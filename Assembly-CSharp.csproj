@@ -64,12 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MousePointer.cs" />
     <Compile Include="Assets\scripts\Axis2D.cs" />
     <Compile Include="Assets\scripts\ChangeColor.cs" />
     <Compile Include="Assets\scripts\GenerateCircleMesh.cs" />
     <Compile Include="Assets\scripts\HorizontalMesh.cs" />
     <Compile Include="Assets\scripts\PentagonGenerator.cs" />
+    <Compile Include="Assets\scripts\PolygonDrag.cs" />
+    <Compile Include="Assets\scripts\PolygonGenerator.cs" />
+    <Compile Include="Assets\scripts\PolygonUtilities.cs" />
     <Compile Include="Assets\scripts\QuadCreator.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/jaya/unityproject/FunkyGraphs/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

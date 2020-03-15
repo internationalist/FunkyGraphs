@@ -189,10 +189,10 @@
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
-"Assets/MousePointer.cs"
 "Assets/scripts/Axis2D.cs"
 "Assets/scripts/ChangeColor.cs"
 "Assets/scripts/GenerateCircleMesh.cs"
 "Assets/scripts/HorizontalMesh.cs"
+"Assets/scripts/MousePointer.cs"
 "Assets/scripts/PentagonGenerator.cs"
 "Assets/scripts/QuadCreator.cs"
