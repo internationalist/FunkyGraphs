@@ -4,41 +4,64 @@ using UnityEngine;
 
 public class PolygonDrag : MonoBehaviour
 {
-    Vector3 m3Init;
-    bool drag;
-    Vector3 delta;
     public Texture2D moveTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+
+    Vector3 m3Init;
+    bool drag;
+    Vector3 delta;
+    bool onTarget; //this will change from a bool to a type to represent drag, scale horiz, scale vertical and scale.
+    Transform targetTransform;
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
         Vector3 m3 = Input.mousePosition;
         m3.z = 10;
         m3 = Camera.main.ScreenToWorldPoint(m3);
 
+        OnTargetForDrag();
+
+        Drag(m3);
+    }
+
+    private void Drag(Vector3 m3)
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!drag && onTarget)
+            {
+                delta = (targetTransform.position - m3);
+                drag = true;
+            }
+            if (drag)
+            {
+                targetTransform.position = delta + m3;
+            }
+        }
+        else
+        {
+            drag = false;
+            targetTransform = null;
+        }
+    }
+
+    private void OnTargetForDrag()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
             Cursor.SetCursor(moveTexture, hotSpot, cursorMode);
-            if (Input.GetMouseButton(0))
-            {
-                if (!drag)
-                {
-                    delta = (hit.transform.position - m3);
-                    drag = true;
-
-                }
-                hit.transform.position = delta + m3;
-            } else
-            {
-                drag = false;
-            }
-        } else
+            onTarget = true;
+            targetTransform = hit.transform;
+        }
+        else
         {
-            drag = false;
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            onTarget = false;
         }
     }
 }

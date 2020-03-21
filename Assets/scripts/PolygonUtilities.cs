@@ -10,7 +10,7 @@ namespace VectorDraw.Functional
         {
             BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
             //boxCollider.center = meshRenderer.bounds.center;
-            boxCollider.center = gameObject.transform.position;
+            boxCollider.center = Vector3.zero;
             boxCollider.size = radius * Vector3.one;
         }
 

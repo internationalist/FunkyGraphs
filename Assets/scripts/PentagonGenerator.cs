@@ -8,6 +8,7 @@ using VectorDraw.Functional;
  */
 public class PentagonGenerator : PolygonGenerator
 {
+    string stringToEdit;
     internal override Vector2[] GetUVs()
     {
         return new Vector2[5]
