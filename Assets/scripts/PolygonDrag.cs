@@ -31,10 +31,26 @@ public class PolygonDrag : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (!drag && onTarget)
+            if (!drag)
             {
-                delta = (targetTransform.position - m3);
-                drag = true;
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.gameObject.CompareTag("Polygon"))
+                    {
+                        Cursor.SetCursor(moveTexture, hotSpot, cursorMode);
+                        //onTarget = true;
+                        targetTransform = hit.transform;
+                    }
+                    delta = (targetTransform.position - m3);
+                    drag = true;
+                }
+                /*else
+                {
+                    Cursor.SetCursor(null, Vector2.zero, cursorMode);
+                    //onTarget = false;
+                }*/
             }
             if (drag)
             {
@@ -54,14 +70,15 @@ public class PolygonDrag : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Cursor.SetCursor(moveTexture, hotSpot, cursorMode);
-            onTarget = true;
-            targetTransform = hit.transform;
+            if("Polygon".Equals(hit.collider.gameObject.tag))
+            {
+                Cursor.SetCursor(moveTexture, hotSpot, cursorMode);
+            }
+
         }
         else
         {
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
-            onTarget = false;
         }
     }
 }

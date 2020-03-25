@@ -130,8 +130,9 @@ public abstract class PolygonGenerator : MonoBehaviour
 
     private void InitializeTexObjects()
     {
-        GameObject inputField = Instantiate(inputFieldPrefab, transform.position, Quaternion.identity);
-        inputField.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        //GameObject inputField = Instantiate(inputFieldPrefab, transform.position, Quaternion.identity);
+        GameObject inputField = inputFieldPrefab;
+        //inputField.transform.SetParent(GameObject.Find("Canvas").transform, false);
         rectTransform = inputField.GetComponent<RectTransform>();
         rectTransform.position = transform.position;
         txt = inputField.GetComponentInChildren<Text>();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5993573752833851165}
   - component: {fileID: 5993573752833851164}
   - component: {fileID: 5993573752833851163}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5993573752833851161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5993573754155437356}
@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.45, y: 0.77}
-  m_SizeDelta: {x: 82.38, y: 61.2}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 71.41, y: 50.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5993573752833851165
 CanvasRenderer:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.18039216, g: 0.8352941, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5993573753677416096}
   - component: {fileID: 5993573753677416098}
   - component: {fileID: 5993573753677416097}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1.34, y: -0.000002861}
-  m_SizeDelta: {x: 95.10565, y: 90.45085}
+  m_SizeDelta: {x: 76.08452, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5993573753677416098
 CanvasRenderer:
@@ -193,19 +193,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18431373, g: 0.20784314, b: 0.25882354, a: 1}
+  m_Color: {r: 0, g: 0.0029791552, b: 0.009433985, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 95d31f3ef7e154c7f99229abca176efe, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 4
+    m_MaxSize: 150
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5993573754155437356}
   - component: {fileID: 5993573754155437358}
   - component: {fileID: 5993573754155437357}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
