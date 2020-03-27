@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{9FA1BEFA-8C80-735E-6E57-7511D9A80F8E}|">
+﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/PolygonDrag.cs">
     <Files>
       <File FileName="Assets/scripts/QuadCreator.cs" Line="58" Column="3" />
@@ -15,9 +15,11 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="FunkyGraphs" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="scripts" expanded="True">
-                <Node name="PolygonDrag.cs" selected="True" />
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="scripts" expanded="True">
+                  <Node name="PolygonDrag.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
