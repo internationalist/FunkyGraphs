@@ -8,7 +8,7 @@
       <File FileName="Assets/scripts/ChangeColor.cs" />
       <File FileName="Assets/scripts/Axis2D.cs" />
       <File FileName="Assets/DrawCollider.cs" />
-      <File FileName="Assets/scripts/PolygonDrag.cs" Line="53" Column="20" />
+      <File FileName="Assets/scripts/PolygonDrag.cs" Line="10" Column="22" />
       <File FileName="Assets/scripts/PolygonGenerator.cs" />
     </Files>
     <Pads>
