@@ -60,8 +60,9 @@ public class PolygonInteraction : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    targetTransform = hit.transform;
-                    polyGenerator = targetTransform.GetComponent<PolygonGenerator>();
+                    targetTransform = hit.transform.parent;
+                    polyGenerator = targetTransform.GetComponentInChildren<PolygonGenerator>();
+                    //polyGenerator = targetTransform.GetComponent<PolygonGenerator>();
                     AssignInteractionType(hit);
                     deltaFromMousePos = (targetTransform.position - m3);
                     interaction = true;
@@ -74,7 +75,7 @@ public class PolygonInteraction : MonoBehaviour
                     switch (interactionType)
                     {
                         case InteractionType.DRAG:
-                            targetTransform.parent.position = deltaFromMousePos + m3;
+                            targetTransform.position = deltaFromMousePos + m3;
                             break;
                         case InteractionType.SCALENW:
                             ScaleNW(m3);
@@ -118,7 +119,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x = -1 * delta.x * .25f;
         delta.y *= .25f;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.southEast.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.southEast.transform.position, newScale);
     }
 
     private void ScaleN(Vector3 m3)
@@ -128,7 +129,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x = 0;
         delta.z = 0;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.south.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.south.transform.position, newScale);
     }
 
     private void ScaleNE(Vector3 m3)
@@ -138,7 +139,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x *= .25f;
         delta.y *= .25f;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.southWest.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.southWest.transform.position, newScale);
     }
 
     private void ScaleE(Vector3 m3)
@@ -148,7 +149,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x *= .25f;
         delta.y = 0;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.west.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.west.transform.position, newScale);
     }
 
     private void ScaleSE(Vector3 m3)
@@ -158,7 +159,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x *= .25f;
         delta.y = -1 * delta.y*.25f;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.northWest.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.northWest.transform.position, newScale);
     }
 
     private void ScaleS(Vector3 m3)
@@ -168,7 +169,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x = 0;
         delta.z = 0;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.north.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.north.transform.position, newScale);
     }
 
     private void ScaleSW(Vector3 m3)
@@ -178,7 +179,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x = -1 * delta.x * .25f;
         delta.z = 0;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.northEast.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.northEast.transform.position, newScale);
     }
 
     private void ScaleW(Vector3 m3)
@@ -188,7 +189,7 @@ public class PolygonInteraction : MonoBehaviour
         delta.x = -1 * delta.x * .25f;
         delta.z = 0;
         Vector3 newScale = targetTransform.localScale + delta;
-        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.east.transform.localPosition, newScale);
+        PolygonUtilities.ScaleAround(targetTransform.gameObject, polyGenerator.east.transform.position, newScale);
     }
 
     private void ResetInteractionState()
