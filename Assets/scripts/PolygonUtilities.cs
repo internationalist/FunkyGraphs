@@ -52,5 +52,23 @@ namespace VectorDraw.Functional
             meshFilter.mesh = mesh;
             return mesh;
         }
+
+        public static void ScaleAround(GameObject target, Vector3 pivot, Vector3 newScale)
+        {
+            Vector3 A = target.transform.localPosition;
+            Vector3 B = pivot;
+            Vector3 C = A - B; // diff from object pivot to desired pivot/origin
+            float RSx = newScale.x / target.transform.localScale.x; // relative scale factor
+            float RSy = newScale.y / target.transform.localScale.y; // relative scale factor
+            // calc final position post-scale
+            Debug.Log(C);
+            Vector3 FPx = B + C * RSx;
+            Vector3 FPy = B + C * RSy;
+            Vector3 FP = new Vector3(FPx.x, FPy.y, 0);
+            Debug.Log(FP);
+            // finally, actually perform the scale/translation
+            target.transform.localScale = newScale;
+            target.transform.localPosition = FP;
+        }
     }
 }

@@ -251,3 +251,7 @@
 /Users/jaya/unityproject/FunkyGraphs/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/jaya/unityproject/FunkyGraphs/obj/Debug/Assembly-CSharp.dll
 /Users/jaya/unityproject/FunkyGraphs/obj/Debug/Assembly-CSharp.pdb
+C:\Users\chotu\unitycommercial\FunkyGraphs\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\chotu\unitycommercial\FunkyGraphs\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\chotu\unitycommercial\FunkyGraphs\obj\Debug\Assembly-CSharp.dll
+C:\Users\chotu\unitycommercial\FunkyGraphs\obj\Debug\Assembly-CSharp.pdb
