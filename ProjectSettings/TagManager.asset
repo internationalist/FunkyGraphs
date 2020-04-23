@@ -13,6 +13,7 @@ TagManager:
   - S
   - SW
   - W
+  - PolygonContainer
   layers:
   - Default
   - TransparentFX

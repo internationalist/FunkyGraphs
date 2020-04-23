@@ -9,7 +9,6 @@ namespace VectorDraw.Functional
         public static void BuildColliderForDrag(GameObject gameObject, float radius)
         {
             BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
-            //boxCollider.center = meshRenderer.bounds.center;
             boxCollider.center = Vector3.zero;
             boxCollider.size = radius * Vector3.one;
         }
@@ -53,6 +52,14 @@ namespace VectorDraw.Functional
             return mesh;
         }
 
+        /// <summary>
+        /// <para>Utility function for scaling around a specific pivot point.</para>
+        /// <para>Position pivot has to be local to the parent of the target transform to be scaled.</para>
+        /// <para>If target is in worldspace then pivot has to be world space coordinates.</para>
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="pivot"></param>
+        /// <param name="newScale"></param>
         public static void ScaleAround(GameObject target, Vector3 pivot, Vector3 newScale)
         {
             Vector3 A = target.transform.localPosition;

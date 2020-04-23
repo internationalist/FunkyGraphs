@@ -67,6 +67,7 @@
     <Compile Include="Assets\scripts\GenerateCircleMesh.cs" />
     <Compile Include="Assets\scripts\HorizontalMesh.cs" />
     <Compile Include="Assets\scripts\PentagonGenerator.cs" />
+    <Compile Include="Assets\scripts\PolygonContainer.cs" />
     <Compile Include="Assets\scripts\PolygonGenerator.cs" />
     <Compile Include="Assets\scripts\PolygonInteraction.cs" />
     <Compile Include="Assets\scripts\PolygonUtilities.cs" />

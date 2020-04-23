@@ -37,7 +37,7 @@ public abstract class PolygonGenerator : MonoBehaviour
     private Mesh mesh;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
 
         /* Create mesh renderer */

@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VectorDraw.Functional;
-/*
- * MeshRenderer renderer=gameObject.getcomponent<MeshRenderer>();
- boxCollider.center = renderer.bounds.center;
- boxCollider.size = renderer.bounds.size;
- */
+
 public class PentagonGenerator : PolygonGenerator
 {
     string stringToEdit;

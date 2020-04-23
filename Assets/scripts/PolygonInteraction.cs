@@ -62,7 +62,6 @@ public class PolygonInteraction : MonoBehaviour
                 {
                     targetTransform = hit.transform.parent;
                     polyGenerator = targetTransform.GetComponentInChildren<PolygonGenerator>();
-                    //polyGenerator = targetTransform.GetComponent<PolygonGenerator>();
                     AssignInteractionType(hit);
                     deltaFromMousePos = (targetTransform.position - m3);
                     interaction = true;
