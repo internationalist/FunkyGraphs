@@ -5,49 +5,43 @@ using VectorDraw.Functional;
 
 public class PolygonContainer : MonoBehaviour
 {
-    public GameObject northHandle;
-    public GameObject eastHandle;
-    public GameObject southHandle;
-    public GameObject westHandle;
+    public GameObject lineMarker;
+    private PentagonGenerator pentagonGen;
 
     // Start is called before the first frame update
     void Start()
     {
         Transform polygon = transform.GetChild(0);
-        int childCount = polygon.childCount;
-        Vector3 localPosition;
-        for(int i = 0; i < childCount; i++)
-        {
-            Transform child = polygon.GetChild(i);
-            switch(child.gameObject.tag)
-            {
-                case "N":
-                    localPosition = child.localPosition;
-                    localPosition.y += .2f;
-                    northHandle.transform.localPosition = localPosition;
-                    break;
-                case "E":
-                    localPosition = child.localPosition;
-                    localPosition.x += .2f;
-                    eastHandle.transform.localPosition = localPosition;
-                    break;
-                case "S":
-                    localPosition = child.localPosition;
-                    localPosition.y -= .2f;
-                    southHandle.transform.localPosition = localPosition;
-                    break;
-                case "W":
-                    localPosition = child.localPosition;
-                    localPosition.x -= .2f;
-                    westHandle.transform.localPosition = localPosition;
-                    break;
-            }
-        }
+        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+        collider.size = polygon.GetComponent<Renderer>().bounds.size*1.01f;
+        pentagonGen = GetComponentInChildren<PentagonGenerator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray);
+        if (hits != null && hits.Length > 0)
+        {
+            foreach(RaycastHit hit in hits)
+            {
+                if(hit.collider.gameObject.tag.Equals("PolygonContainer"))
+                {
+                    lineMarker.SetActive(true);
+                    lineMarker.transform.position = hit.point;
+                    Debug.Log("Mouse at " + hit.point);
+                    Debug.Log("Vertices 2 is " + transform.TransformPoint(pentagonGen.vertices[1]));
+                } else
+                {
+                    lineMarker.SetActive(false);
+                }
+            }
+        } else
+        {
+            lineMarker.SetActive(false);
+        }
+
     }
+
+
 }

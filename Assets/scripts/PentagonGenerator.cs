@@ -29,7 +29,7 @@ public class PentagonGenerator : PolygonGenerator
         };
     }
 
-    internal override int[] GetTriangles()
+    public override int[] GetTriangles()
     {
         int[] tris = new int[9]
         {

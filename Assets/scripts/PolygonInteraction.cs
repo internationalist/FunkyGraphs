@@ -35,6 +35,10 @@ public class PolygonInteraction : MonoBehaviour
 
     private PolygonGenerator polyGenerator;
 
+    public GameObject lineMarkerEnd;
+    public GameObject line;
+    public GameObject lineSource;
+
 
 
 
@@ -60,11 +64,30 @@ public class PolygonInteraction : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
+                    lineMarkerEnd.SetActive(false);
                     targetTransform = hit.transform.parent;
-                    polyGenerator = targetTransform.GetComponentInChildren<PolygonGenerator>();
-                    AssignInteractionType(hit);
-                    deltaFromMousePos = (targetTransform.position - m3);
-                    interaction = true;
+                    if(targetTransform != null) //Because mouse can hover the polygon parent as well.
+                    {
+                        polyGenerator = targetTransform.GetComponentInChildren<PolygonGenerator>();
+                        AssignInteractionType(hit);
+                        deltaFromMousePos = (targetTransform.position - m3);
+                        interaction = true;
+                    }
+                } else
+                {
+                    lineMarkerEnd.SetActive(true);
+                    lineMarkerEnd.transform.position = m3;
+                    Vector3[] lineVerts = { lineSource.transform.position, m3 };
+                    LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+                    lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+                    lineRenderer.widthMultiplier = .02f;
+                    lineRenderer.positionCount = lineVerts.Length;
+                    lineRenderer.startColor = Color.black;
+                    lineRenderer.endColor = Color.black;
+                    lineRenderer.loop = false;
+                    lineRenderer.useWorldSpace = false;
+                    lineRenderer.SetPositions(lineVerts);
+                    //PolygonUtilities.DrawBorder(line, lineVerts,Color.black, .08f, "Sprites/Default");
                 }
             }
             if(targetTransform != null)
@@ -197,6 +220,7 @@ public class PolygonInteraction : MonoBehaviour
         targetTransform = null;
         interactionType = InteractionType.NONE;
         mouseLastPosition = Vector3.zero;
+        lineMarkerEnd.SetActive(false);
     }
 
     private void AssignInteractionType(RaycastHit hit)

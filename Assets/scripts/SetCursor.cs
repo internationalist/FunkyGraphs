@@ -76,6 +76,9 @@ public class SetCursor : MonoBehaviour
                         hotSpot = new Vector2(scaleHoriz.width / 2, scaleHoriz.height / 2);
                         Cursor.SetCursor(scaleHoriz, hotSpot, cursorMode);
                         break;
+                    default:
+                        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+                        break;
                 }
                 polygonDrag.CurrentMouseHoverTag = hit.collider.gameObject.tag;
             }

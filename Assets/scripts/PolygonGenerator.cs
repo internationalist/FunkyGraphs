@@ -22,6 +22,7 @@ public abstract class PolygonGenerator : MonoBehaviour
     public GameObject southEast;
     public GameObject south;
     enum HandlePosition { NW, N, NE, E, SE, S, SW, W};
+    public Vector3[] vertices;
 
     //Text related instance variables
     public GameObject inputFieldPrefab;
@@ -47,7 +48,7 @@ public abstract class PolygonGenerator : MonoBehaviour
         /* Create mesh filter */
         mesh = PolygonUtilities.AddMesh(gameObject);
 
-        Vector3[] vertices = GenerateVertices();
+        vertices = GenerateVertices();
 
         mesh.vertices = vertices;
 
@@ -184,7 +185,7 @@ public abstract class PolygonGenerator : MonoBehaviour
     }
 
     internal abstract Vector2[] GetUVs();
-    internal abstract int[] GetTriangles();
+    public abstract int[] GetTriangles();
     internal abstract Vector3[] GetNormals();
     internal abstract Vector3[] GenerateVertices();
 }
