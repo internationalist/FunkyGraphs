@@ -38,6 +38,7 @@ public class PolygonInteraction : MonoBehaviour
     public GameObject lineMarkerEnd;
     public GameObject line;
     public GameObject lineSource;
+    private LineRenderer lineRenderer;
 
 
 
@@ -51,6 +52,31 @@ public class PolygonInteraction : MonoBehaviour
         m3 = Camera.main.ScreenToWorldPoint(m3);
 
         Interact(m3);
+    }
+
+    private void FindIntersectionPoint(Vector3 lineStart, Vector3 lineEnd)
+    {
+        PolygonGenerator pg = lineSource.GetComponent<PolygonGenerator>();
+        Vector3[] verts = pg.GenerateVertices();
+        int[] triangleOrder = pg.GetTriangles();
+        for(int i = 0; i < triangleOrder.Length; i++)
+        {
+            Vector3 triangleSideStart = verts[i];
+            Vector3 triangleSideEnd;
+            if (i < triangleOrder.Length - 1)
+            {
+                triangleSideEnd = verts[i + 1];
+            } else
+            {
+                triangleSideEnd = verts[0];
+            }
+            //covert the line into a equation.
+            float x=0, y=0;
+            float slope1 = (triangleSideEnd.x - triangleSideStart.x) / (triangleSideEnd.y - triangleSideStart.y);
+            float C = triangleSideStart.x - slope1 * triangleSideStart.y;
+            float slope2 = (lineEnd.x - lineStart.x) / (lineEnd.y - lineStart.y);
+            //slope2 * y = slope1 * y;
+        }
     }
 
 
@@ -78,16 +104,13 @@ public class PolygonInteraction : MonoBehaviour
                     lineMarkerEnd.SetActive(true);
                     lineMarkerEnd.transform.position = m3;
                     Vector3[] lineVerts = { lineSource.transform.position, m3 };
-                    LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
-                    lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-                    lineRenderer.widthMultiplier = .02f;
-                    lineRenderer.positionCount = lineVerts.Length;
-                    lineRenderer.startColor = Color.black;
-                    lineRenderer.endColor = Color.black;
-                    lineRenderer.loop = false;
-                    lineRenderer.useWorldSpace = false;
-                    lineRenderer.SetPositions(lineVerts);
-                    //PolygonUtilities.DrawBorder(line, lineVerts,Color.black, .08f, "Sprites/Default");
+                    if (lineRenderer != null)
+                    {
+                        lineRenderer.SetPositions(lineVerts);
+                    } else
+                    {
+                        lineRenderer = PolygonUtilities.DrawLine(line, lineVerts, Color.gray, .02f, "Sprites/Default");
+                    }
                 }
             }
             if(targetTransform != null)

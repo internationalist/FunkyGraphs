@@ -39,7 +39,7 @@ public class PentagonGenerator : PolygonGenerator
         return tris;
     }
 
-    internal override Vector3[] GenerateVertices()
+    public override Vector3[] GenerateVertices()
     {
         Vector3[] points = new Vector3[5];
         points[0] = new Vector3(0, radius, 0);

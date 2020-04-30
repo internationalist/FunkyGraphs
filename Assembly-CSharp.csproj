@@ -64,6 +64,7 @@
     <Compile Include="Assets\DrawCollider.cs" />
     <Compile Include="Assets\scripts\Axis2D.cs" />
     <Compile Include="Assets\scripts\ChangeColor.cs" />
+    <Compile Include="Assets\scripts\FindXEquation.cs" />
     <Compile Include="Assets\scripts\GenerateCircleMesh.cs" />
     <Compile Include="Assets\scripts\HorizontalMesh.cs" />
     <Compile Include="Assets\scripts\PentagonGenerator.cs" />

@@ -187,5 +187,5 @@ public abstract class PolygonGenerator : MonoBehaviour
     internal abstract Vector2[] GetUVs();
     public abstract int[] GetTriangles();
     internal abstract Vector3[] GetNormals();
-    internal abstract Vector3[] GenerateVertices();
+    public abstract Vector3[] GenerateVertices();
 }

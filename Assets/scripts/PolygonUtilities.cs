@@ -35,6 +35,26 @@ namespace VectorDraw.Functional
             lineRenderer.SetPosition(positionCount, vertices[0]);
         }
 
+        public static LineRenderer DrawLine(GameObject gameObject,
+                                      Vector3[] vertices,
+                                      Color borderColor,
+                                      float borderWidth,
+                                      string shader)
+        {
+            LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            lineRenderer.receiveShadows = false;
+            lineRenderer.material = new Material(Shader.Find(shader));
+            lineRenderer.widthMultiplier = .02f;
+            lineRenderer.positionCount = vertices.Length;
+            lineRenderer.startColor = borderColor;
+            lineRenderer.endColor = borderColor;
+            lineRenderer.loop = false;
+            lineRenderer.useWorldSpace = false;
+            lineRenderer.SetPositions(vertices);
+            return lineRenderer;
+        }
+
         public static MeshRenderer AddMeshRenderer(GameObject gameObject,
             string shader) {
             MeshRenderer meshRenderer =
