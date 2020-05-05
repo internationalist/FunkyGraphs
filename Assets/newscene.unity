@@ -249,6 +249,8 @@ MonoBehaviour:
   lineMarkerEnd: {fileID: 3548570065190568784}
   line: {fileID: 855451722}
   lineSource: {fileID: 261829486}
+  intersectionMarkerPrefab: {fileID: 3548570064771291840, guid: 0e706c89b7c1bc148847902115667ef7,
+    type: 3}
 --- !u!114 &778248089
 MonoBehaviour:
   m_ObjectHideFlags: 0

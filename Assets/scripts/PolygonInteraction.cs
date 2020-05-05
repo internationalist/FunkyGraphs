@@ -38,6 +38,7 @@ public class PolygonInteraction : MonoBehaviour
     public GameObject lineMarkerEnd;
     public GameObject line;
     public GameObject lineSource;
+    public GameObject intersectionMarkerPrefab;
     private LineRenderer lineRenderer;
 
 
@@ -56,29 +57,41 @@ public class PolygonInteraction : MonoBehaviour
 
     private void FindIntersectionPoint(Vector3 lineStart, Vector3 lineEnd)
     {
-        PolygonGenerator pg = lineSource.GetComponent<PolygonGenerator>();
+        PolygonGenerator pg = lineSource.GetComponentInChildren<PolygonGenerator>();
         Vector3[] verts = pg.GenerateVertices();
-        int[] triangleOrder = pg.GetTriangles();
-        for(int i = 0; i < triangleOrder.Length; i++)
+        for(int i = 0; i < verts.Length; i++)
         {
-            Vector3 triangleSideStart = verts[i];
-            Vector3 triangleSideEnd;
-            if (i < triangleOrder.Length - 1)
+            Vector3 polygonSideStart = verts[i];
+            Vector3 polygonSideEnd;
+            polygonSideEnd = GetTriangleSideEnd(verts, i);
+
+            Debug.Log("Line vectors: " + lineStart + " " + lineEnd);
+            Debug.Log("Polygon side vectors: " + polygonSideStart + " " + polygonSideEnd);
+
+            LineIntersectionManager.IntersectionCheck ic = LineIntersectionManager.DoLinesIntersect(lineStart, lineEnd, polygonSideStart, polygonSideEnd);
+            if(ic.didIntersect)
             {
-                triangleSideEnd = verts[i + 1];
-            } else
-            {
-                triangleSideEnd = verts[0];
+                Debug.Log("lines intersect");
+                Instantiate(intersectionMarkerPrefab, ic.intersectionPoint, Quaternion.identity);
             }
-            //covert the line into a equation.
-            float x=0, y=0;
-            float slope1 = (triangleSideEnd.x - triangleSideStart.x) / (triangleSideEnd.y - triangleSideStart.y);
-            float C = triangleSideStart.x - slope1 * triangleSideStart.y;
-            float slope2 = (lineEnd.x - lineStart.x) / (lineEnd.y - lineStart.y);
-            //slope2 * y = slope1 * y;
-        }
+
+        }//end for
     }
 
+    private static Vector3 GetTriangleSideEnd(Vector3[] verts, int i)
+    {
+        Vector3 polygonSideEnd;
+        if (i < verts.Length - 1)
+        {
+            polygonSideEnd = verts[i + 1];
+        }
+        else
+        {
+            polygonSideEnd = verts[0];
+        }
+
+        return polygonSideEnd;
+    }
 
     private void Interact(Vector3 m3)
     {
@@ -111,6 +124,7 @@ public class PolygonInteraction : MonoBehaviour
                     {
                         lineRenderer = PolygonUtilities.DrawLine(line, lineVerts, Color.gray, .02f, "Sprites/Default");
                     }
+                    FindIntersectionPoint(lineSource.transform.position, m3);
                 }
             }
             if(targetTransform != null)
