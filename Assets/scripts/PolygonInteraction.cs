@@ -38,7 +38,7 @@ public class PolygonInteraction : MonoBehaviour
     public GameObject lineMarkerEnd;
     public GameObject line;
     public GameObject lineSource;
-    public GameObject intersectionMarkerPrefab;
+    public GameObject intersectionMarker;
     private LineRenderer lineRenderer;
 
 
@@ -58,21 +58,19 @@ public class PolygonInteraction : MonoBehaviour
     private void FindIntersectionPoint(Vector3 lineStart, Vector3 lineEnd)
     {
         PolygonGenerator pg = lineSource.GetComponentInChildren<PolygonGenerator>();
-        Vector3[] verts = pg.GenerateVertices();
+        Vector3[] verts = pg.GenerateWorldVertices();
         for(int i = 0; i < verts.Length; i++)
         {
             Vector3 polygonSideStart = verts[i];
             Vector3 polygonSideEnd;
             polygonSideEnd = GetTriangleSideEnd(verts, i);
 
-            Debug.Log("Line vectors: " + lineStart + " " + lineEnd);
-            Debug.Log("Polygon side vectors: " + polygonSideStart + " " + polygonSideEnd);
 
             LineIntersectionManager.IntersectionCheck ic = LineIntersectionManager.DoLinesIntersect(lineStart, lineEnd, polygonSideStart, polygonSideEnd);
             if(ic.didIntersect)
             {
-                Debug.Log("lines intersect");
-                Instantiate(intersectionMarkerPrefab, ic.intersectionPoint, Quaternion.identity);
+                intersectionMarker.SetActive(true);
+                intersectionMarker.transform.position = ic.intersectionPoint;
             }
 
         }//end for
@@ -257,7 +255,7 @@ public class PolygonInteraction : MonoBehaviour
         targetTransform = null;
         interactionType = InteractionType.NONE;
         mouseLastPosition = Vector3.zero;
-        lineMarkerEnd.SetActive(false);
+        //lineMarkerEnd.SetActive(false);
     }
 
     private void AssignInteractionType(RaycastHit hit)

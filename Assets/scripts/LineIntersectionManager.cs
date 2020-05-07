@@ -45,14 +45,14 @@ namespace VectorDraw.Functional
             bool isInterPoint = false;
             if (line1Start.x > intersection.x)
             {
-                if (line1End.x < intersection.x)
+                if (line1End.x <= intersection.x)
                 {
                     isInterPoint = true;
                 }
             }
             else if (line1Start.x < intersection.x)
             {
-                if (line1End.x > intersection.x)
+                if (line1End.x >= intersection.x)
                 {
                     isInterPoint = true;
                 }
@@ -74,14 +74,14 @@ namespace VectorDraw.Functional
             bool isInterPoint = false;
             if (line1Start.y > intersection.y)
             {
-                if (line1End.y < intersection.y)
+                if (line1End.y <= intersection.y)
                 {
                     isInterPoint = true;
                 }
             }
             else if (line1Start.y < intersection.y)
             {
-                if (line1End.y > intersection.y)
+                if (line1End.y >= intersection.y)
                 {
                     isInterPoint = true;
                 }
@@ -91,10 +91,7 @@ namespace VectorDraw.Functional
             {
                 isInterPoint = true;
             }
-            else if (intersection.y == line1End.y)
-            {
-                isInterPoint = true;
-            }
+ 
             return isInterPoint;
         }
 

@@ -188,4 +188,16 @@ public abstract class PolygonGenerator : MonoBehaviour
     public abstract int[] GetTriangles();
     internal abstract Vector3[] GetNormals();
     public abstract Vector3[] GenerateVertices();
+
+    public Vector3[] GenerateWorldVertices() {
+        
+        Vector3[] localVs = GenerateVertices();
+        Vector3[] worldVs = new Vector3[localVs.Length];
+
+        for (int i = 0; i < localVs.Length; i++)
+        {
+            worldVs[i] = this.gameObject.transform.TransformPoint(localVs[i]);
+        }
+        return worldVs;
+    }
 }
