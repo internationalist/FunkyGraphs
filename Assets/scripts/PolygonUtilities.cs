@@ -55,8 +55,34 @@ namespace VectorDraw.Functional
             return lineRenderer;
         }
 
+        public static void AddLineCollider(GameObject line)
+        {
+            LineRenderer lineRend = line.GetComponent<LineRenderer>();
+            BoxCollider coll = new GameObject("Collider").AddComponent<BoxCollider>();
+            coll.transform.parent = line.transform;
+            Vector3[] positions = new Vector3[2];
+            lineRend.GetPositions(positions);
+            Vector3 startPosition = positions[0];
+            Vector3 endPosition = positions[1];
+            float lineLength = Vector3.Distance(startPosition, endPosition);
+            coll.size = new Vector3(lineLength, lineRend.startWidth, 1f);
+            Vector3 midPoint = (startPosition + endPosition) / 2;
+            coll.transform.position = midPoint;
+            //calculate angle between start and end point.
+            float angle = (Mathf.Abs(startPosition.y - endPosition.y) / Mathf.Abs(startPosition.x - endPosition.x));
+
+            if ((startPosition.y < endPosition.y && startPosition.x > endPosition.x)
+                    || (startPosition.y > endPosition.y && startPosition.x < endPosition.x))
+            {
+                angle *= -1;
+            }
+
+            angle = Mathf.Rad2Deg * Mathf.Atan(angle);
+            coll.transform.Rotate(0, 0, angle);
+        }
+
         public static MeshRenderer AddMeshRenderer(GameObject gameObject,
-            string shader) {
+        string shader) {
             MeshRenderer meshRenderer =
                                     gameObject.AddComponent<MeshRenderer>();
             meshRenderer.sharedMaterial =

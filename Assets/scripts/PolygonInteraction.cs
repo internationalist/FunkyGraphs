@@ -121,6 +121,7 @@ public class PolygonInteraction : MonoBehaviour
                     } else
                     {
                         lineRenderer = PolygonUtilities.DrawLine(line, lineVerts, Color.gray, .02f, "Sprites/Default");
+                        PolygonUtilities.AddLineCollider(line);
                     }
                     FindIntersectionPoint(lineSource.transform.position, m3);
                 }
