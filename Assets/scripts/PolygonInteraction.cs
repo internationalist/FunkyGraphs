@@ -35,11 +35,7 @@ public class PolygonInteraction : MonoBehaviour
 
     private PolygonGenerator polyGenerator;
 
-    public GameObject lineMarkerEnd;
-    public GameObject line;
-    public GameObject lineSource;
-    public GameObject intersectionMarker;
-    private LineRenderer lineRenderer;
+    
 
 
 
@@ -55,28 +51,9 @@ public class PolygonInteraction : MonoBehaviour
         Interact(m3);
     }
 
-    private void FindIntersectionPoint(Vector3 lineStart, Vector3 lineEnd)
-    {
-        PolygonGenerator pg = lineSource.GetComponentInChildren<PolygonGenerator>();
-        Vector3[] verts = pg.GenerateWorldVertices();
-        for(int i = 0; i < verts.Length; i++)
-        {
-            Vector3 polygonSideStart = verts[i];
-            Vector3 polygonSideEnd;
-            polygonSideEnd = GetTriangleSideEnd(verts, i);
 
 
-            LineIntersectionManager.IntersectionCheck ic = LineIntersectionManager.DoLinesIntersect(lineStart, lineEnd, polygonSideStart, polygonSideEnd);
-            if(ic.didIntersect)
-            {
-                intersectionMarker.SetActive(true);
-                intersectionMarker.transform.position = ic.intersectionPoint;
-            }
-
-        }//end for
-    }
-
-    private static Vector3 GetTriangleSideEnd(Vector3[] verts, int i)
+    private static Vector3 GetPolygonSideEnd(Vector3[] verts, int i)
     {
         Vector3 polygonSideEnd;
         if (i < verts.Length - 1)
@@ -101,7 +78,8 @@ public class PolygonInteraction : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    lineMarkerEnd.SetActive(false);
+                    //lineMarkerEnd.SetActive(false);
+                    //intersectionMarker.SetActive(false);
                     targetTransform = hit.transform.parent;
                     if(targetTransform != null) //Because mouse can hover the polygon parent as well.
                     {
@@ -110,21 +88,22 @@ public class PolygonInteraction : MonoBehaviour
                         deltaFromMousePos = (targetTransform.position - m3);
                         interaction = true;
                     }
-                } else
+                }/* else
                 {
                     lineMarkerEnd.SetActive(true);
                     lineMarkerEnd.transform.position = m3;
-                    Vector3[] lineVerts = { lineSource.transform.position, m3 };
-                    if (lineRenderer != null)
+                    
+
+                    Vector3[] lineVerts = { intersectionMarker.transform.position, m3 };
+                    //lineRenderer.SetPositions(lineVerts);
+                    if (lineRenderer == null)
                     {
-                        lineRenderer.SetPositions(lineVerts);
-                    } else
-                    {
+                        FindIntersectionPoint(lineSource.transform.position, m3);
                         lineRenderer = PolygonUtilities.DrawLine(line, lineVerts, Color.gray, .02f, "Sprites/Default");
-                        PolygonUtilities.AddLineCollider(line);
+                        lineCollider = PolygonUtilities.AddLineCollider(line);
                     }
-                    FindIntersectionPoint(lineSource.transform.position, m3);
-                }
+                    
+                }*/
             }
             if(targetTransform != null)
             {
@@ -167,6 +146,10 @@ public class PolygonInteraction : MonoBehaviour
         else
         {
             ResetInteractionState();
+            /*if (lineRenderer != null)
+            {
+                PolygonUtilities.SetSizeAndOrient(lineSource.transform, lineRenderer, lineCollider);
+            }*/
         }
     }
 
@@ -257,6 +240,7 @@ public class PolygonInteraction : MonoBehaviour
         interactionType = InteractionType.NONE;
         mouseLastPosition = Vector3.zero;
         //lineMarkerEnd.SetActive(false);
+        //intersectionMarker.SetActive(false);
     }
 
     private void AssignInteractionType(RaycastHit hit)

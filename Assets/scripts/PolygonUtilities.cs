@@ -55,11 +55,18 @@ namespace VectorDraw.Functional
             return lineRenderer;
         }
 
-        public static void AddLineCollider(GameObject line)
+        public static BoxCollider AddLineCollider(GameObject line)
         {
             LineRenderer lineRend = line.GetComponent<LineRenderer>();
             BoxCollider coll = new GameObject("Collider").AddComponent<BoxCollider>();
             coll.transform.parent = line.transform;
+            SetSizeAndOrient(line.transform.parent, lineRend, coll);
+            return coll;
+        }
+
+        public static void SetSizeAndOrient(Transform worldParent, LineRenderer lineRend, BoxCollider coll)
+        {
+            coll.transform.rotation = Quaternion.identity;
             Vector3[] positions = new Vector3[2];
             lineRend.GetPositions(positions);
             Vector3 startPosition = positions[0];
@@ -80,6 +87,7 @@ namespace VectorDraw.Functional
             angle = Mathf.Rad2Deg * Mathf.Atan(angle);
             coll.transform.Rotate(0, 0, angle);
         }
+
 
         public static MeshRenderer AddMeshRenderer(GameObject gameObject,
         string shader) {

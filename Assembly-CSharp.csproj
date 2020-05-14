@@ -62,12 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DrawCollider.cs" />
+    <Compile Include="Assets\Line.cs" />
     <Compile Include="Assets\scripts\Axis2D.cs" />
     <Compile Include="Assets\scripts\ChangeColor.cs" />
     <Compile Include="Assets\scripts\Equation.cs" />
     <Compile Include="Assets\scripts\GenerateCircleMesh.cs" />
     <Compile Include="Assets\scripts\HorizontalMesh.cs" />
     <Compile Include="Assets\scripts\LineIntersectionManager.cs" />
+    <Compile Include="Assets\scripts\LineManager.cs" />
     <Compile Include="Assets\scripts\PentagonGenerator.cs" />
     <Compile Include="Assets\scripts\PolygonContainer.cs" />
     <Compile Include="Assets\scripts\PolygonGenerator.cs" />

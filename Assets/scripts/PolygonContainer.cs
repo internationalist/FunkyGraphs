@@ -29,8 +29,6 @@ public class PolygonContainer : MonoBehaviour
                 {
                     lineMarker.SetActive(true);
                     lineMarker.transform.position = hit.point;
-                    Debug.Log("Mouse at " + hit.point);
-                    Debug.Log("Vertices 2 is " + transform.TransformPoint(pentagonGen.vertices[1]));
                 } else
                 {
                     lineMarker.SetActive(false);
