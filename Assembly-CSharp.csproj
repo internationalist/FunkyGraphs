@@ -63,19 +63,20 @@
   <ItemGroup>
     <Compile Include="Assets\DrawCollider.cs" />
     <Compile Include="Assets\Line.cs" />
-    <Compile Include="Assets\scripts\Axis2D.cs" />
-    <Compile Include="Assets\scripts\ChangeColor.cs" />
+    <Compile Include="Assets\scripts\2DObjects\PentagonGenerator.cs" />
+    <Compile Include="Assets\scripts\2DObjects\PolygonGenerator.cs" />
+    <Compile Include="Assets\scripts\2DObjects\SquareGenerator.cs" />
+    <Compile Include="Assets\scripts\2DObjects\TriangleGenerator.cs" />
     <Compile Include="Assets\scripts\Equation.cs" />
+    <Compile Include="Assets\scripts\GameManager.cs" />
     <Compile Include="Assets\scripts\GenerateCircleMesh.cs" />
     <Compile Include="Assets\scripts\HorizontalMesh.cs" />
     <Compile Include="Assets\scripts\LineIntersectionManager.cs" />
     <Compile Include="Assets\scripts\LineManager.cs" />
-    <Compile Include="Assets\scripts\PentagonGenerator.cs" />
+    <Compile Include="Assets\scripts\ObjectCreation.cs" />
     <Compile Include="Assets\scripts\PolygonContainer.cs" />
-    <Compile Include="Assets\scripts\PolygonGenerator.cs" />
     <Compile Include="Assets\scripts\PolygonInteraction.cs" />
     <Compile Include="Assets\scripts\PolygonUtilities.cs" />
-    <Compile Include="Assets\scripts\QuadCreator.cs" />
     <Compile Include="Assets\scripts\SetCursor.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -132,19 +133,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -348,7 +349,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.13f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/chotu/unitycommercial/FunkyGraphs/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/chotu/unitycommercial/backup/FunkyGraphs/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

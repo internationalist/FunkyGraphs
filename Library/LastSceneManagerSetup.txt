@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/newscene.unity
+- path: Assets/drawing.unity
   isLoaded: 1
   isActive: 1

@@ -11,9 +11,14 @@ public class PolygonContainer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize();
+    }
+
+    private void Initialize()
+    {
         Transform polygon = transform.GetChild(0);
         BoxCollider collider = gameObject.AddComponent<BoxCollider>();
-        collider.size = polygon.GetComponent<Renderer>().bounds.size*1.01f;
+        collider.size = polygon.GetComponent<Renderer>().bounds.size * 1.01f;
         pentagonGen = GetComponentInChildren<PentagonGenerator>();
     }
 

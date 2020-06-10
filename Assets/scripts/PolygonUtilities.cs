@@ -9,7 +9,9 @@ namespace VectorDraw.Functional
         public static void BuildColliderForDrag(GameObject gameObject, float radius)
         {
             BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
-            boxCollider.center = Vector3.zero;
+            Renderer renderer = gameObject.GetComponent<Renderer>();
+            Bounds rendBound = renderer.bounds;
+            boxCollider.center = rendBound.center;
             boxCollider.size = radius * Vector3.one;
         }
 
@@ -131,5 +133,82 @@ namespace VectorDraw.Functional
             target.transform.localScale = newScale;
             target.transform.localPosition = FP;
         }
+
+        public static void SpawnFigure(string name, GameManager.ObjectType objectType) {
+
+            GameObject polyParent = new GameObject(name);
+            Rigidbody parentRB = polyParent.AddComponent<Rigidbody>();
+            parentRB.useGravity = false;
+            parentRB.isKinematic = true;
+            PolygonContainer pc = polyParent.AddComponent<PolygonContainer>();
+            pc.lineMarker = GameManager.S.polygonHover;
+            GameObject figure;
+            PolygonGenerator pg;
+            switch (objectType) {
+                case GameManager.ObjectType.PENTAGON:
+                    figure = new GameObject("Pentagon");
+                    pg = figure.AddComponent<PentagonGenerator>();
+                    SetupObject(name, parentRB, figure, pg);
+                    break;
+                case GameManager.ObjectType.SQUARE:
+                    figure = new GameObject("Square");
+                    pg = figure.AddComponent<SquareGenerator>();
+                    SetupObject(name, parentRB, figure, pg);
+                    break;
+                case GameManager.ObjectType.TRIANGLE:
+                    figure = new GameObject("Triangle");
+                    pg = figure.AddComponent<TriangleGenerator>();
+                    SetupObject(name, parentRB, figure, pg);
+                    break;
+                default:
+                    break;
+            }            
+        }
+
+        private static void SetupObject(string name, Rigidbody parentRB, GameObject figure, PolygonGenerator pg)
+        {
+            figure.tag = "Polygon";
+            figure.transform.parent = parentRB.transform;
+            Rigidbody rb = figure.AddComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            pg.color = Color.red;
+            pg.borderColor = Color.black;
+            pg.radius = 2f;
+            AddHandles(figure, pg);
+            GameObject inputField = GameObject.Instantiate(GameManager.S.inputFieldPrefab, Vector3.zero, Quaternion.identity);
+            inputField.name = name + "_text";
+            inputField.transform.parent = GameManager.S.inputCanvas.transform;
+            RectTransform rTransform = inputField.GetComponent<RectTransform>();
+            rTransform.localScale = Vector3.one;
+            pg.inputField = inputField;
+            pg.Initialize();
+        }
+
+        private static void AddHandles(GameObject parent, PolygonGenerator pg)
+        {
+            pg.north = NameInstantiateAndParentHandle(parent.transform, "N");
+            pg.northWest = NameInstantiateAndParentHandle(parent.transform, "NW");
+            pg.northEast = NameInstantiateAndParentHandle(parent.transform, "NE");
+            pg.east = NameInstantiateAndParentHandle(parent.transform, "E");
+            pg.southEast = NameInstantiateAndParentHandle(parent.transform, "SE");
+            pg.south = NameInstantiateAndParentHandle(parent.transform, "S");
+            pg.southWest = NameInstantiateAndParentHandle(parent.transform, "SW");
+            pg.west = NameInstantiateAndParentHandle(parent.transform, "W");
+        }
+
+        private static GameObject NameInstantiateAndParentHandle(Transform parent, string name)
+        {
+            GameObject handle = InstantiateHandle();
+            handle.name = name;
+            handle.transform.parent = parent;
+            handle.tag = name;
+            return handle;
+        }
+
+        private static GameObject InstantiateHandle() {
+            return GameObject.Instantiate(GameManager.S.handlePrefab, Vector3.zero, Quaternion.identity);
+        }
+
     }
 }
